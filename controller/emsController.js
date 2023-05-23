@@ -52,6 +52,7 @@ const deleteTask = async(req,res) =>{
 }
 
 const getTask = async(req,res) =>{
+    const{category,startDate,endDate}=req.body;
     try{
         const tasks=await emsModel.find({userId:req.userId});
         res.status(200).json(tasks);
@@ -60,6 +61,7 @@ const getTask = async(req,res) =>{
         res.status(500).json({message:"Something Went Wrong"})
     }
 }
+
 
 module.exports = {
     createTask,

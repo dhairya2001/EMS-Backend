@@ -3,19 +3,17 @@ const emsRoute = require('./routes/emsRoute');
 const userRoute = require('./routes/userRoute');
 const app=express();
 const mongoose = require('mongoose');
-// const cors=require("cors");
-// const dotenv=require("dotenv");
-// dotenv.config();
+const cors=require("cors");
+const categoryRoute = require('./routes/categoryRoute');
 
-app.use(express.json()); // parses req from string to json
-// app.use((req,res,next)=>{
-//     console.log("HTTP Method - " + req.method + ", URL - " + req.url);
-//     next();
-// })
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json()); 
 
-// app.use(cors()); // acts as middleware
+
+app.use(cors()); 
 app.use('/user',userRoute);
 app.use('/ems',emsRoute);
+app.use('/category',categoryRoute)
 app.get('/',(req,res)=>{
     res.status(200).send("Tasks API");
 });
@@ -33,5 +31,3 @@ mongoose.connect("mongodb+srv://dhairya:dhairya2001@cluster1.i4xkwhs.mongodb.net
     console.log(error)
 })
 
-// token
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFiY0BnbWFpbC5jb20iLCJpZCI6IjY0NGEyZTAwOWM5OWEzYzE3MjE3OGQ1YiIsImlhdCI6MTY4MjU5MDMyMX0.El1NxSDga53P4H_YpUuapNYDbOwv9F069lLqvUEP2Lg

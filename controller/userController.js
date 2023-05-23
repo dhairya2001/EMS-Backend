@@ -2,29 +2,24 @@ const userModel=require('../model/userModel')
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
 const SECERET_KEY='EMSAPI';
-// u can use await only in async functions
-const signUp = async(req,res) =>{
-    //Existing User Check
-    //Hashed Password
-    //User Creation
-    //Token Generate
 
-    const{email,password}=req.body;
+const signUp = async(req,res) =>{
+
+    const{name,email,password}=req.body;
     try{
         const existingUser = await userModel.findOne({email:email})
         if(existingUser){
             return res.status(400).json({message:"User Already Exists"});
         }
 
-        const hashedPassword=await bcrypt.hash(password,10); //function will run 10 times 
-
+        const hashedPassword=await bcrypt.hash(password,10);
+        
         const result=await userModel.create({
+            name:name,
             email:email,
             password:hashedPassword
         });
-
-        //payload is used to store info to validate user & sescret key is used to decrypt it
-        const token = jwt.sign({email:result.email,password:result.password},SECERET_KEY);
+        const token = jwt.sign({email:email,id:result._id},SECERET_KEY);
         res.status(201).json({user:result,token:token});
     }catch(error){
         console.log(error);
@@ -39,9 +34,7 @@ const logIn=async(req,res)=>{
         if(!existingUser){
             return res.status(404).json({message:"User Not Found"});
         }
-        // user will enter original password but we stored encrypted password so we need to use bcrypt library
         const matchPassword=await bcrypt.compare(password,existingUser.password);
-        //comaparing password to db password
         if(!matchPassword){
             return res.status(400).json({message:"Invalid Credential"});
         }
