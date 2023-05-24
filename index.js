@@ -21,7 +21,7 @@ app.get('/',(req,res)=>{
 //Connection to database
 // const PORT=process.env.PORT || 5000;
 // mongoose.connect(process.env.MONGO_URL)
-mongoose.connect("mongodb+srv://dhairya:dhairya2001@cluster1.i4xkwhs.mongodb.net/tasks_db?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://<username>:<Password>@cluster1.i4xkwhs.mongodb.net/<collection_name>?retryWrites=true&w=majority")
 .then(()=>{
     app.listen(5000,()=>{
         console.log("Server started on port " +5000);
