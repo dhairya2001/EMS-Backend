@@ -1,12 +1,10 @@
 const express=require('express');
-const dotenv=require('dotenv');
 const emsRoute = require('./routes/emsRoute');
 const userRoute = require('./routes/userRoute');
 const mongoose = require('mongoose');
 const cors=require("cors");
 const categoryRoute = require('./routes/categoryRoute');
 
-dotenv.config({ path: '.env' });
 const app=express();
 app.use(cors()); 
 
@@ -22,7 +20,6 @@ app.get('/',(req,res)=>{
 //Connection to database
 // const PORT=process.env.PORT || 5000;
 // mongoose.connect(process.env.MONGO_URL)
-console.log(process.env.USERNAME);
 mongoose.connect(`${process.env.MONGO_URL}`)
 .then(()=>{
     app.listen(5000,()=>{
