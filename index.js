@@ -17,13 +17,13 @@ app.use('/user',userRoute);
 app.use('/ems',emsRoute);
 app.use('/category',categoryRoute)
 app.get('/',(req,res)=>{
-    res.status(200).send("Tasks API");
+    res.status(200).send("EMS API");
 });
 //Connection to database
 // const PORT=process.env.PORT || 5000;
 // mongoose.connect(process.env.MONGO_URL)
 console.log(process.env.USERNAME);
-mongoose.connect(`mongodb+srv://${process.env.USERNAME}:${process.env.PASS}@${process.env.DB}.wwjij98.mongodb.net/?retryWrites=true&w=majority`)
+mongoose.connect(`${process.env.MONGO_URL}`)
 .then(()=>{
     app.listen(5000,()=>{
         console.log("Server started on port " +5000);
