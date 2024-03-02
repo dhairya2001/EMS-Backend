@@ -2,18 +2,18 @@ const express=require('express');
 const dotenv=require('dotenv');
 const emsRoute = require('./routes/emsRoute');
 const userRoute = require('./routes/userRoute');
-const app=express();
 const mongoose = require('mongoose');
 const cors=require("cors");
 const categoryRoute = require('./routes/categoryRoute');
 
 dotenv.config({ path: '.env' });
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json()); 
-
-
+const app=express();
 app.use(cors()); 
-app.use('/api/user',userRoute);
+
+app.use(express.urlencoded({ extended: true }));
+
+app.use(express.json()); 
+app.use('/user',userRoute);
 app.use('/ems',emsRoute);
 app.use('/category',categoryRoute)
 app.get('/',(req,res)=>{
