@@ -13,7 +13,7 @@ app.use(express.json());
 
 
 app.use(cors()); 
-app.use('/user',userRoute);
+app.use('/api/user',userRoute);
 app.use('/ems',emsRoute);
 app.use('/category',categoryRoute)
 app.get('/',(req,res)=>{
