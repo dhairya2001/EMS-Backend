@@ -20,10 +20,10 @@ app.get('/',(req,res)=>{
 //Connection to database
 // const PORT=process.env.PORT || 5000;
 // mongoose.connect(process.env.MONGO_URL)
-mongoose.connect(`mongodb+srv://dhairyachhabra3072:yadhshro@ems.wwjij98.mongodb.net/?retryWrites=true&w=majority`)
+mongoose.connect(process.env.MONGO_URL)
 .then(()=>{
-    app.listen(5000,()=>{
-        console.log("Server started on port " +5000);
+    app.listen(process.env.PORT || 5000,()=>{
+        console.log("Server started on port " + (process.env.PORT || 5000));
     });
 })
 .catch((error)=>{
