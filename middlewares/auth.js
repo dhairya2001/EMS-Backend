@@ -8,9 +8,10 @@ const auth = (req,res,next) =>{
             token=token.split(" ")[1];
             let user=jwt.verify(token,SECERET_KEY);
             req.userId=user.id;
-        }  
+            next();
+        }
         else{
-            res.status(401).json({message:"Unauthorized User"});
+            throw new Error("Authorization token not provided");
         }
         next();
     } catch(error) {
