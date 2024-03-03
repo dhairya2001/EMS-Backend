@@ -6,7 +6,7 @@ const cors=require("cors");
 const categoryRoute = require('./routes/categoryRoute');
 
 const app=express();
-app.use(cors()); 
+// app.use(cors()); 
 
 app.use(express.urlencoded({ extended: true }));
 
