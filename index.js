@@ -1,9 +1,10 @@
+require('./bin/www');
 const express=require('express');
-const emsRoute = require('../routes/emsRoute');
-const userRoute = require('../routes/userRoute');
+const emsRoute = require('./routes/emsRoute');
+const userRoute = require('./routes/userRoute');
 const mongoose = require('mongoose');
 const cors=require("cors");
-const categoryRoute = require('../routes/categoryRoute');
+const categoryRoute = require('./routes/categoryRoute');
 
 const app=express();
 app.use(cors()); 
