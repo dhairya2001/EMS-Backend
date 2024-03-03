@@ -1,7 +1,6 @@
 const userModel=require('../model/userModel')
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
-const SECERET_KEY='EMSAPI';
 
 const signUp = async(req,res) =>{
 
@@ -19,7 +18,7 @@ const signUp = async(req,res) =>{
             email:email,
             password:hashedPassword
         });
-        const token = jwt.sign({email:email,id:result._id},SECERET_KEY);
+        const token = jwt.sign({email:email,id:result._id},process.env.SECERET_KEY);
         res.status(201).json({user:result,token:token});
     }catch(error){
         console.log(error);
@@ -38,7 +37,7 @@ const logIn=async(req,res)=>{
         if(!matchPassword){
             return res.status(400).json({message:"Invalid Credential"});
         }
-        const token=jwt.sign({email:existingUser.email,id:existingUser._id},SECERET_KEY);
+        const token=jwt.sign({email:existingUser.email,id:existingUser._id},process.env.SECERET_KEY);
         res.status(201).json({user:existingUser,token:token});
     } catch (error) {
         console.log(error);
