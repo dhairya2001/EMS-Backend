@@ -1,9 +1,9 @@
 const express=require('express');
-const emsRoute = require('./routes/emsRoute');
-const userRoute = require('./routes/userRoute');
+const emsRoute = require('../routes/emsRoute');
+const userRoute = require('../routes/userRoute');
 const mongoose = require('mongoose');
 const cors=require("cors");
-const categoryRoute = require('./routes/categoryRoute');
+const categoryRoute = require('../routes/categoryRoute');
 
 const app=express();
 app.use(cors()); 
@@ -20,7 +20,7 @@ app.get('/',(req,res)=>{
 //Connection to database
 // const PORT=process.env.PORT || 5000;
 // mongoose.connect(process.env.MONGO_URL)
-mongoose.connect(`${process.env.MONGO_URL}`)
+mongoose.connect(`mongodb+srv://dhairyachhabra3072:yadhshro@ems.wwjij98.mongodb.net/?retryWrites=true&w=majority`)
 .then(()=>{
     app.listen(5000,()=>{
         console.log("Server started on port " +5000);
@@ -29,4 +29,4 @@ mongoose.connect(`${process.env.MONGO_URL}`)
 .catch((error)=>{
     console.log(error)
 })
-
+// module.exports=app;
