@@ -1,22 +1,19 @@
 const jwt=require("jsonwebtoken");
-// const SECERET_KEY=process.env.SECERET_KEY;
-const SECERET_KEY="EMSAPI"
+// const SECERET_KEY="EMSAPI"
 const auth = (req,res,next) =>{
     try {
         let token=req.headers.authorization;
         if(token){
             token=token.split(" ")[1];
-            let user=jwt.verify(token,SECERET_KEY);
+            let user=jwt.verify(token,process.env.SECERET_KEY);
             req.userId=user.id;
-            next();
         }
         else{
             throw new Error("Authorization token not provided");
         }
-        next();
     } catch(error) {
         console.log(error);
-        res.status(401).json({message:"Unauthorized User"})
+        res.status(401).json({message:"Unauthorized User!"})
     } 
 };
 
