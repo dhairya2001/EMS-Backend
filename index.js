@@ -21,7 +21,7 @@ app.get('/',(req,res)=>{
 //Connection to database
 // const PORT=process.env.PORT || 5000;
 // mongoose.connect(process.env.MONGO_URL)
-mongoose.connect(process.env.MONGO_URL)
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
 .then(()=>{
     app.listen(process.env.PORT || 5000,()=>{
         console.log("Server started on port " + (process.env.PORT || 5000));
