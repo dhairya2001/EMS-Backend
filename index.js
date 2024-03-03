@@ -1,4 +1,3 @@
-require('./bin/www');
 const express=require('express');
 const emsRoute = require('./routes/emsRoute');
 const userRoute = require('./routes/userRoute');
