@@ -52,9 +52,11 @@ const deleteTask = async(req,res) =>{
 }
 
 const getTask = async(req,res) =>{
+    console.log("incoming get request")
     const{category,startDate,endDate}=req.body;
     try{
         const tasks=await emsModel.find({userId:req.userId});
+        console.log(tasks);
         res.status(200).json(tasks);
     }catch(error){
         console.log(error);
