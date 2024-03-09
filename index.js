@@ -7,7 +7,7 @@ const categoryRoute = require('./routes/categoryRoute');
 
 const app=express();
 
-app.use(cors({origin:"http://localhost:3000",credentials:true})); 
+app.use(cors()); 
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -30,4 +30,4 @@ mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopol
 .catch((error)=>{
     console.log(error)
 })
-export default app;
+module.exports=app;
