@@ -19,7 +19,6 @@ const signUp = async(req,res) =>{
             password:hashedPassword
         });
         const token = jwt.sign({email:email,id:result._id},process.env.SECERET_KEY);
-        console.log("token generated",token);
         res.status(201).json({user:result,token:token});
     }catch(error){
         console.log(error);
@@ -30,7 +29,6 @@ const signUp = async(req,res) =>{
 const logIn=async(req,res)=>{
     const{email,password}=req.body;
     try {
-        console.log("Incoming login request");
         const existingUser = await userModel.findOne({email:email})
         if(!existingUser){
             return res.status(404).json({message:"User Not Found"});
@@ -40,7 +38,6 @@ const logIn=async(req,res)=>{
             return res.status(400).json({message:"Invalid Credential"});
         }
         const token=jwt.sign({email:existingUser.email,id:existingUser._id},process.env.SECERET_KEY);
-        console.log("token generated",token);
         res.status(201).json({user:existingUser,token:token});
     } catch (error) {
         console.log(error);
