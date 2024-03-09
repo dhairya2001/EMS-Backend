@@ -1,11 +1,12 @@
 const jwt=require("jsonwebtoken");
-
+const SECERET_KEY="EMSAPI";
 const auth = (req,res,next) =>{
     try {
         let token=req.headers.authorization;
+        console.log(token);
         if(token){
             token=token.split(" ")[1];
-            let user=jwt.verify(token,process.env.SECERET_KEY);
+            let user=jwt.verify(token,SECERET_KEY);
             req.userId=user.id;
         }
         else{
