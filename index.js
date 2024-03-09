@@ -30,4 +30,4 @@ mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopol
 .catch((error)=>{
     console.log(error)
 })
-// module.exports=app;
+export default app;
