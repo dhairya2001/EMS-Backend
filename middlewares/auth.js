@@ -1,9 +1,9 @@
 const jwt=require("jsonwebtoken");
-// const SECERET_KEY="EMSAPI"
+
 const auth = (req,res,next) =>{
     try {
+        console.log('Incoming request headers',req.headers);
         let token=req.headers.authorization;
-        console.log(token);
         if(token){
             token=token.split(" ")[1];
             let user=jwt.verify(token,process.env.SECERET_KEY);
@@ -13,7 +13,7 @@ const auth = (req,res,next) =>{
             throw new Error("Authorization token not provided");
         }
     } catch(error) {
-        console.log(error);
+        console.log("Token validation failed");
         res.status(401).json({message:"Unauthorized User!"})
     } 
 };
