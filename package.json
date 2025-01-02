@@ -7,6 +7,9 @@
     "start": "nodemon src/index.js",
     "build": "echo 'Building the application...'"
   },
+  "engines": {
+  "node": "18.x"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
